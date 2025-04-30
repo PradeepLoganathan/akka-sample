@@ -23,9 +23,21 @@ public class AkkaConfig {
     @Bean
     public ActorRef helloActorRef(ActorSystem system) {
         return system.actorOf(
-            SpringExtension.SPRING_EXTENSION_PROVIDER.get(system)
-                .props("helloActor"),
+            SpringExtension.SPRING_EXTENSION_PROVIDER
+            .get(system)
+            .props("helloActor"),
             "helloActor"
         );
     }
+
+    @Bean("counterActorRef")
+    public ActorRef counterActorRef(ActorSystem system) {
+        return system.actorOf(
+            SpringExtension.SPRING_EXTENSION_PROVIDER
+            .get(system)
+            .props("counterActor"),
+            "counterActor"
+        );
+    }
+
 }
