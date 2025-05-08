@@ -12,6 +12,10 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AkkaConfig {
 
+    public static final String HELLO_ACTOR_NAME = "helloActor";
+    public static final String COUNTER_ACTOR_NAME = "counterActor";
+
+    
     @Bean
     public ActorSystem actorSystem(ApplicationContext ctx) {
         Config config = ConfigFactory.load();
@@ -25,8 +29,8 @@ public class AkkaConfig {
         return system.actorOf(
             SpringExtension.SPRING_EXTENSION_PROVIDER
             .get(system)
-            .props("helloActor"),
-            "helloActor"
+            .props(HELLO_ACTOR_NAME),
+            HELLO_ACTOR_NAME
         );
     }
 
@@ -35,8 +39,8 @@ public class AkkaConfig {
         return system.actorOf(
             SpringExtension.SPRING_EXTENSION_PROVIDER
             .get(system)
-            .props("counterActor"),
-            "counterActor"
+            .props(COUNTER_ACTOR_NAME),
+            COUNTER_ACTOR_NAME
         );
     }
 
